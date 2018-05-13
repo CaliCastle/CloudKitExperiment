@@ -3,18 +3,16 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="finished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="recordData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="items" inverseEntity="List" syncable="YES"/>
     </entity>
     <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
-        <attribute name="recordData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="recordName" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="list" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="261" positionY="198" width="128" height="120"/>
-        <element name="List" positionX="270" positionY="207" width="128" height="105"/>
+        <element name="Item" positionX="261" positionY="198" width="128" height="105"/>
+        <element name="List" positionX="270" positionY="207" width="128" height="90"/>
     </elements>
 </model>

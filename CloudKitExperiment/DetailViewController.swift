@@ -19,6 +19,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForItem(_:)))
         navigationItem.rightBarButtonItem = addButton
+        
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
     var list: List? {
@@ -43,6 +45,22 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         present(actionController, animated: true, completion: nil)
     }
     
+    fileprivate func promptUpdateItem(at indexPath: IndexPath) {
+        let actionController = UIAlertController(title: "Change name of the item", message: nil, preferredStyle: .alert)
+        actionController.addTextField {
+            $0.placeholder = "Name"
+            $0.returnKeyType = .done
+            $0.autocapitalizationType = .sentences
+        }
+        
+        actionController.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
+            self.updateItem(name: actionController.textFields!.first!.text!, for: self.fetchedResultsController.object(at: indexPath))
+        }))
+        actionController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(actionController, animated: true, completion: nil)
+    }
+    
     private func insertNewItem(name: String) {
         let context = self.fetchedResultsController.managedObjectContext
         let newItem = Item(context: context)
@@ -52,6 +70,18 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         newItem.name = name
         newItem.finished = false
         
+        saveContext(context)
+    }
+    
+    private func updateItem(name: String, for item: Item) {
+        let context = self.fetchedResultsController.managedObjectContext
+        
+        item.name = name
+        
+        saveContext(context)
+    }
+    
+    private func saveContext(_ context: NSManagedObjectContext) {
         // Save the context.
         do {
             try context.save()
@@ -88,8 +118,12 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let item = fetchedResultsController.object(at: indexPath)
-        item.finished = !item.finished
+        if tableView.isEditing {
+            promptUpdateItem(at: indexPath)
+        } else {
+            let item = fetchedResultsController.object(at: indexPath)
+            item.finished = !item.finished
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -194,9 +228,14 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         switch type {
         case .insert:
             let record = CKRecord(recordType: "Item")
-            record.setValue(item.name, forKey: "name")
-            record.setValue(item.finished, forKey: "finished")
-            record.setValue(list!.recordName, forKeyPath: "listID")
+            record.setValue(item.name, forKeyPath: #keyPath(Item.name))
+            record.setValue(item.finished, forKeyPath: #keyPath(Item.finished))
+            
+            // Add list 'belongs to' relationship
+            let listID = CKRecordID(recordName: list!.recordName!)
+            let reference = CKReference(recordID: listID, action: .none)
+            
+            record.setValue(reference, forKeyPath: #keyPath(Item.list))
             
             cloudDatabase.save(record) { (record, error) in
                 guard let record = record else { return }
@@ -214,9 +253,14 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         case .update:
             if let recordName = item.recordName {
                 let newRecord = CKRecord(recordType: "Item", recordID: CKRecordID(recordName: recordName))
-                newRecord.setValue(item.name, forKey: "name")
-                newRecord.setValue(item.finished, forKey: "finished")
-                newRecord.setValue(list!.recordName, forKeyPath: "listID")
+                newRecord.setValue(item.name, forKeyPath: #keyPath(Item.name))
+                newRecord.setValue(item.finished, forKeyPath: #keyPath(Item.finished))
+                
+                // Add list relationship
+                let listID = CKRecordID(recordName: list!.recordName!)
+                let reference = CKReference(recordID: listID, action: .none)
+                
+                newRecord.setValue(reference, forKeyPath: #keyPath(Item.list))
                 
                 let modifyOperation = CKModifyRecordsOperation(recordsToSave: [newRecord], recordIDsToDelete: nil)
                 modifyOperation.savePolicy = .changedKeys

@@ -33,6 +33,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
             detailViewController?.managedObjectContext = managedObjectContext
         }
+        
+        // Subscribe for changes
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: String(describing: List.self), predicate: predicate, options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
+        
+        let notificationInfo = CKNotificationInfo()
+        notificationInfo.alertActionLocalizationKey = "New lists."
+        notificationInfo.shouldBadge = true
+        
+        subscription.notificationInfo = notificationInfo
+        
+        cloudDatabase.save(subscription) { (sub, error) in
+            if error == nil {
+                print("Subscription saved! \(sub?.notificationInfo?.alertActionLocalizationKey ?? "")")
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +123,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             $0.returnKeyType = .done
             $0.autocapitalizationType = .words
         }
-        actionController.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
+        actionController.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
             let list = self.fetchedResultsController.object(at: indexPath)
             self.updateList(title: actionController.textFields!.first!.text!, for: list)
         }))
@@ -284,7 +300,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         switch type {
         case .insert:
             let record = CKRecord(recordType: "List", recordID: CKRecordID(recordName: list.recordName ?? ""))
-            record.setValue(list.title!, forKey: "title")
+            record.setValue(list.title!, forKeyPath: #keyPath(List.title))
             
             cloudDatabase.save(record) { (record, error) in
                 guard let record = record else { return }
@@ -302,7 +318,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         case .update:
             if let recordName = list.recordName {
                 let newRecord = CKRecord(recordType: "List", recordID: CKRecordID(recordName: recordName))
-                newRecord.setValue(list.title, forKey: "title")
+                newRecord.setValue(list.title, forKeyPath: #keyPath(List.title))
                 
                 let modifyOperation = CKModifyRecordsOperation(recordsToSave: [newRecord], recordIDsToDelete: nil)
                 modifyOperation.savePolicy = .changedKeys
