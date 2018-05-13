@@ -1,0 +1,16 @@
+PODS:
+  - CloudCore (2.0.1)
+
+DEPENDENCIES:
+  - CloudCore
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CloudCore
+
+SPEC CHECKSUMS:
+  CloudCore: 1d0eff6948afeb6964004b28819d77b3fbaf88be
+
+PODFILE CHECKSUM: cc5de2f161cacf079c85accb084f6d1b3e225025
+
+COCOAPODS: 1.5.0

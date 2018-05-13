@@ -1,0 +1,718 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0288555077766D9726BEF85C3F1EEF57 /* Pods-CloudKitExperiment-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DF40CC1E865437744011BBCE80F489F /* Pods-CloudKitExperiment-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		044EE149B510F7ADEA4677D7488A7140 /* RecordToCoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6759ECF8EC567E36B77BF6758CF27515 /* RecordToCoreDataOperation.swift */; };
+		0CD190344244A57AB94891DF724293FF /* CKRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A281CB43C7C0B2D781663824211D23F7 /* CKRecord.swift */; };
+		0F605342A1958D2939AE798C3CAEDADC /* CloudCore-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E516DDF0F08B57026E50EADA3B33BB72 /* CloudCore-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13F0C120DFE30038DC63328511823B43 /* CreateCloudCoreZoneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECF0FBAD2BE661E9FEC011C7EC0236B /* CreateCloudCoreZoneOperation.swift */; };
+		1C92EFC8CB705C1583C38B4256B6225C /* DeleteFromCoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C98DDDD7EBE7C39053ACDEF3DF522 /* DeleteFromCoreDataOperation.swift */; };
+		281A4D2BB0A222B0BEB4698BF1B0DE39 /* CloudCoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9C45F9CB0542112C8F3A3B5FB4F9D /* CloudCoreError.swift */; };
+		33E21D9A8C719F27EF06372271214201 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8571DC4789728ACC6833E3EC0C735EE2 /* CoreData.framework */; };
+		3C77C4AAE3BFD31F6A012AF5AE8266C0 /* CoreDataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB045B2DFFB23838B97A868DBFE179B /* CoreDataListener.swift */; };
+		40778A849CE6AF59ECF0E75840867D84 /* CoreDataAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993162BFE660538E00ABDCE85F989398 /* CoreDataAttribute.swift */; };
+		414298444C62A9EFC82D677ABEBD32E0 /* CloudSaveOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567484D37B583E8E1EA3CB901847C384 /* CloudSaveOperationQueue.swift */; };
+		44E31C969CE792709A8114A414E00A68 /* NSManagedObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BCF02C18F614A81C63AD551333F74F /* NSManagedObjectModel.swift */; };
+		47A865D281488E90AB61C908C76C404E /* ObjectToRecordConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420B42DB617A2704E4FB901062A5206 /* ObjectToRecordConverter.swift */; };
+		5B2C8FF234963D879DADFCBAD46E460F /* CloudCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFAE7E7F1F50F34DC6F8DB4BA832A /* CloudCore.swift */; };
+		6513E73D2312A70B38EA2A703DCA0DB5 /* UploadAllLocalDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58751A45D57E86B96DC8A15CF8063F2E /* UploadAllLocalDataOperation.swift */; };
+		67001F0E3389CCE41F3DA457CF24857B /* FetchPublicSubscriptionsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1190772E389FDBA65A36944CC4F63DF4 /* FetchPublicSubscriptionsOperation.swift */; };
+		78CCBFB422E34E8DCC74B4A617BEA85B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7029AF17E26AFFDC676C543D8C2F9418 /* Foundation.framework */; };
+		7BAF779637280728B8E857D4EE90F8B4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64ECF12EC5F7C7A9A6D844947553DEF /* CloudKit.framework */; };
+		7BB726F7CFC0CFBF4B658505C27FD91B /* ErrorBlockProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52121A2DBD2F344F15E06598F02020A7 /* ErrorBlockProxy.swift */; };
+		7CB87AE653FAC15C9AAA6C297028EDC2 /* NSEntityDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D00996830C9354798F0A3B65FEA042 /* NSEntityDescription.swift */; };
+		86547A92824ABCD4E5641D990AEC31AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7029AF17E26AFFDC676C543D8C2F9418 /* Foundation.framework */; };
+		921DD5F595C7763096D146CE1437E0F7 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DE6E5CF6EF1651BDB969F3411578F /* FetchResult.swift */; };
+		9654985243DFC76AAB6EA1F913534328 /* SetupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B118982DE8483B25E6E5DE0B9C387F8B /* SetupOperation.swift */; };
+		9712289C8DC5F689B83AEEAA59A307C8 /* CloudCoreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8DC42EE8AECE64976B78D4B48412E3 /* CloudCoreDelegate.swift */; };
+		9BEA9A8DD660A08457518E56995718E3 /* RecordIDWithDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284FC9622BB6EB123B7597E54F2E64B /* RecordIDWithDatabase.swift */; };
+		A2B854D2E7B51C20DA1F7BEAF9D3F40B /* CoreDataRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B93A593042AA8795242F21F803B83 /* CoreDataRelationship.swift */; };
+		AA2E10F9D524F2EB6606EA0F7EC3BA6C /* SubscribeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8874D5EAAC290DA4344EB3511D4B21D /* SubscribeOperation.swift */; };
+		AC9C349E414D5E1B74D071E60A970096 /* PurgeLocalDatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CB79555966F557EB0EA7419422CF32 /* PurgeLocalDatabaseOperation.swift */; };
+		AD1F0B5749FAA0D1BDC66F6982515108 /* Pods-CloudKitExperiment-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47827A0412FDD4ECA08A74D677C69F7F /* Pods-CloudKitExperiment-dummy.m */; };
+		ADE10B52D7D9FE7B79BECDAFED0C9F47 /* ServiceAttributeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C188A185957C09D36E8B8D8D7181FD /* ServiceAttributeName.swift */; };
+		AFCFE2D2ECC7AAC0BA2837D071E7D5C0 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CC3B4C2535C5B41E5DA1BBA2FB4C7E /* AsynchronousOperation.swift */; };
+		B16182F6BD63E16692F02138DED2E84C /* FetchAndSaveOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D287C6A5DCBF07EBD2EB5EF8479909AF /* FetchAndSaveOperation.swift */; };
+		B59AB4A55111FAF83D3EAF02A0DDFE11 /* ObjectToRecordOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC054AE4240FD6008756F3E52181BC /* ObjectToRecordOperation.swift */; };
+		B9AF331613EFB8B2B8E5793896CA470A /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E68139F15C882878C5BE69734F450A /* Tokens.swift */; };
+		C4F8870B06C004B5C0399F5802F1B96C /* CloudKitAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638E5183825FFF36EC862B1CC8D0DDC /* CloudKitAttribute.swift */; };
+		C5BA2B6384E9E6DE8F47B8CD99805A57 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CB8CBBC7A83FE456ED38D4AA8D7FD1 /* NSManagedObject.swift */; };
+		CA6ED555EDAB76DAD0EE2EE819FBB266 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C39219AB9C70C9B9C07FCFB465C4FF6 /* Module.swift */; };
+		CB63E5CC690E7103A88649BBB6345E2B /* CloudCore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D3F0B18019366DEFFA34D0066EF1E3 /* CloudCore-dummy.m */; };
+		D9307CE6F303F64197BE8E55797D0E36 /* CKRecordID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB043882FFC5A7F5588F5B461DE55A4 /* CKRecordID.swift */; };
+		E23ECFFBF2B533506516E3BDE609EAC4 /* FetchRecordZoneChangesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E2F06F6D077A2415234A3B069A65 /* FetchRecordZoneChangesOperation.swift */; };
+		E30F77C3A84B40F0C1A53F4EA10B33F0 /* PublicDatabaseSubscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59729CB7A128332ABF8E95735D38155A /* PublicDatabaseSubscriptions.swift */; };
+		EB58B475AEA12D212109BEA2331E6177 /* RecordWithDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79670026C19382F2A1083B9F8D5DDC6 /* RecordWithDatabase.swift */; };
+		F162126B42E3F4249195821B4C3F4EA7 /* CloudCoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EECC55FD972F354CDB84E9284EF8E /* CloudCoreConfig.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		56ABCFEC350BC2CD61E8C8C89263AD69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CD51823481EB71310C144E7D7391E3C;
+			remoteInfo = CloudCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1190772E389FDBA65A36944CC4F63DF4 /* FetchPublicSubscriptionsOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FetchPublicSubscriptionsOperation.swift; path = Source/Classes/Fetch/PublicSubscriptions/FetchPublicSubscriptionsOperation.swift; sourceTree = "<group>"; };
+		15F47B10C4414116EF3B3D6594F91450 /* Pods-CloudKitExperiment-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CloudKitExperiment-frameworks.sh"; sourceTree = "<group>"; };
+		1B8DC42EE8AECE64976B78D4B48412E3 /* CloudCoreDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudCoreDelegate.swift; path = Source/Protocols/CloudCoreDelegate.swift; sourceTree = "<group>"; };
+		1C39219AB9C70C9B9C07FCFB465C4FF6 /* Module.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Module.swift; path = Source/Enum/Module.swift; sourceTree = "<group>"; };
+		1EAC054AE4240FD6008756F3E52181BC /* ObjectToRecordOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectToRecordOperation.swift; path = Source/Classes/Save/ObjectToRecord/ObjectToRecordOperation.swift; sourceTree = "<group>"; };
+		1FB045B2DFFB23838B97A868DBFE179B /* CoreDataListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataListener.swift; path = Source/Classes/Save/CoreDataListener.swift; sourceTree = "<group>"; };
+		235C98DDDD7EBE7C39053ACDEF3DF522 /* DeleteFromCoreDataOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeleteFromCoreDataOperation.swift; path = Source/Classes/Fetch/SubOperations/DeleteFromCoreDataOperation.swift; sourceTree = "<group>"; };
+		2382E0223CDF8C3BD9A8CBF436690E99 /* CloudCore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CloudCore.modulemap; sourceTree = "<group>"; };
+		26D00996830C9354798F0A3B65FEA042 /* NSEntityDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSEntityDescription.swift; path = Source/Extensions/NSEntityDescription.swift; sourceTree = "<group>"; };
+		2E81B2AA5EA3A47A53FC22CECBDB666A /* Pods-CloudKitExperiment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CloudKitExperiment.release.xcconfig"; sourceTree = "<group>"; };
+		32CFFAE7E7F1F50F34DC6F8DB4BA832A /* CloudCore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudCore.swift; path = Source/Classes/CloudCore.swift; sourceTree = "<group>"; };
+		365EECC55FD972F354CDB84E9284EF8E /* CloudCoreConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudCoreConfig.swift; path = Source/Model/CloudCoreConfig.swift; sourceTree = "<group>"; };
+		396C96E8D7B72CEB38FB3EC48D7E4079 /* Pods-CloudKitExperiment-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CloudKitExperiment-resources.sh"; sourceTree = "<group>"; };
+		398C61C8B55F3ACA33EFCA89F863CF13 /* Pods-CloudKitExperiment.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CloudKitExperiment.modulemap"; sourceTree = "<group>"; };
+		3F0DE6E5CF6EF1651BDB969F3411578F /* FetchResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FetchResult.swift; path = Source/Enum/FetchResult.swift; sourceTree = "<group>"; };
+		43D9C45F9CB0542112C8F3A3B5FB4F9D /* CloudCoreError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudCoreError.swift; path = Source/Enum/CloudCoreError.swift; sourceTree = "<group>"; };
+		46C188A185957C09D36E8B8D8D7181FD /* ServiceAttributeName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServiceAttributeName.swift; path = Source/Model/ServiceAttributeName.swift; sourceTree = "<group>"; };
+		47827A0412FDD4ECA08A74D677C69F7F /* Pods-CloudKitExperiment-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CloudKitExperiment-dummy.m"; sourceTree = "<group>"; };
+		52121A2DBD2F344F15E06598F02020A7 /* ErrorBlockProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorBlockProxy.swift; path = Source/Classes/ErrorBlockProxy.swift; sourceTree = "<group>"; };
+		54CB8CBBC7A83FE456ED38D4AA8D7FD1 /* NSManagedObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSManagedObject.swift; path = Source/Extensions/NSManagedObject.swift; sourceTree = "<group>"; };
+		567484D37B583E8E1EA3CB901847C384 /* CloudSaveOperationQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudSaveOperationQueue.swift; path = Source/Classes/Save/CloudSaveOperationQueue.swift; sourceTree = "<group>"; };
+		58751A45D57E86B96DC8A15CF8063F2E /* UploadAllLocalDataOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UploadAllLocalDataOperation.swift; path = "Source/Classes/Setup Operation/UploadAllLocalDataOperation.swift"; sourceTree = "<group>"; };
+		59729CB7A128332ABF8E95735D38155A /* PublicDatabaseSubscriptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicDatabaseSubscriptions.swift; path = Source/Classes/Fetch/PublicSubscriptions/PublicDatabaseSubscriptions.swift; sourceTree = "<group>"; };
+		5C12D182DC587CA5B2950D9C0505D7D5 /* Pods_CloudKitExperiment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CloudKitExperiment.framework; path = "Pods-CloudKitExperiment.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		605D6060025E7A4E0B1CE555C8D8BB65 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60CC3B4C2535C5B41E5DA1BBA2FB4C7E /* AsynchronousOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsynchronousOperation.swift; path = Source/Classes/AsynchronousOperation.swift; sourceTree = "<group>"; };
+		6759ECF8EC567E36B77BF6758CF27515 /* RecordToCoreDataOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordToCoreDataOperation.swift; path = Source/Classes/Fetch/SubOperations/RecordToCoreDataOperation.swift; sourceTree = "<group>"; };
+		6DF40CC1E865437744011BBCE80F489F /* Pods-CloudKitExperiment-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CloudKitExperiment-umbrella.h"; sourceTree = "<group>"; };
+		7029AF17E26AFFDC676C543D8C2F9418 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		82CB79555966F557EB0EA7419422CF32 /* PurgeLocalDatabaseOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PurgeLocalDatabaseOperation.swift; path = Source/Classes/Fetch/SubOperations/PurgeLocalDatabaseOperation.swift; sourceTree = "<group>"; };
+		8571DC4789728ACC6833E3EC0C735EE2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		91D3F0B18019366DEFFA34D0066EF1E3 /* CloudCore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CloudCore-dummy.m"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9420B42DB617A2704E4FB901062A5206 /* ObjectToRecordConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectToRecordConverter.swift; path = Source/Classes/Save/ObjectToRecord/ObjectToRecordConverter.swift; sourceTree = "<group>"; };
+		993162BFE660538E00ABDCE85F989398 /* CoreDataAttribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataAttribute.swift; path = Source/Classes/Save/ObjectToRecord/CoreDataAttribute.swift; sourceTree = "<group>"; };
+		99BB47170774BFD2D1CFF5204866DD16 /* Pods-CloudKitExperiment-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CloudKitExperiment-acknowledgements.plist"; sourceTree = "<group>"; };
+		A281CB43C7C0B2D781663824211D23F7 /* CKRecord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CKRecord.swift; path = Source/Model/CKRecord.swift; sourceTree = "<group>"; };
+		A284FC9622BB6EB123B7597E54F2E64B /* RecordIDWithDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordIDWithDatabase.swift; path = Source/Classes/Save/Model/RecordIDWithDatabase.swift; sourceTree = "<group>"; };
+		A37AD9FD1701AC9002F4E3B5CF231606 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4C5B76D1DAE55940DDFF7C54DECC0D9 /* CloudCore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CloudCore.xcconfig; sourceTree = "<group>"; };
+		AF85EA5EA4241B59C7E2337EC3A2E8B3 /* Pods-CloudKitExperiment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CloudKitExperiment.debug.xcconfig"; sourceTree = "<group>"; };
+		B066BCAA6AE64ECB8586F015E73FC513 /* Pods-CloudKitExperiment-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CloudKitExperiment-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B118982DE8483B25E6E5DE0B9C387F8B /* SetupOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SetupOperation.swift; path = "Source/Classes/Setup Operation/SetupOperation.swift"; sourceTree = "<group>"; };
+		B53B93A593042AA8795242F21F803B83 /* CoreDataRelationship.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataRelationship.swift; path = Source/Classes/Save/ObjectToRecord/CoreDataRelationship.swift; sourceTree = "<group>"; };
+		B64ECF12EC5F7C7A9A6D844947553DEF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		C8E938C141EA7A68CE970568764BE83B /* CloudCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CloudCore.framework; path = CloudCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB043882FFC5A7F5588F5B461DE55A4 /* CKRecordID.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CKRecordID.swift; path = Source/Extensions/CKRecordID.swift; sourceTree = "<group>"; };
+		CE6E4E88520C96E8B80671528414B19D /* CloudCore-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CloudCore-prefix.pch"; sourceTree = "<group>"; };
+		D287C6A5DCBF07EBD2EB5EF8479909AF /* FetchAndSaveOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FetchAndSaveOperation.swift; path = Source/Classes/Fetch/FetchAndSaveOperation.swift; sourceTree = "<group>"; };
+		D638E5183825FFF36EC862B1CC8D0DDC /* CloudKitAttribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudKitAttribute.swift; path = Source/Model/CloudKitAttribute.swift; sourceTree = "<group>"; };
+		D8BCF02C18F614A81C63AD551333F74F /* NSManagedObjectModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSManagedObjectModel.swift; path = Source/Extensions/NSManagedObjectModel.swift; sourceTree = "<group>"; };
+		DECF0FBAD2BE661E9FEC011C7EC0236B /* CreateCloudCoreZoneOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateCloudCoreZoneOperation.swift; path = "Source/Classes/Setup Operation/CreateCloudCoreZoneOperation.swift"; sourceTree = "<group>"; };
+		E516DDF0F08B57026E50EADA3B33BB72 /* CloudCore-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CloudCore-umbrella.h"; sourceTree = "<group>"; };
+		E79670026C19382F2A1083B9F8D5DDC6 /* RecordWithDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordWithDatabase.swift; path = Source/Classes/Save/Model/RecordWithDatabase.swift; sourceTree = "<group>"; };
+		E9C3E2F06F6D077A2415234A3B069A65 /* FetchRecordZoneChangesOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FetchRecordZoneChangesOperation.swift; path = Source/Classes/Fetch/SubOperations/FetchRecordZoneChangesOperation.swift; sourceTree = "<group>"; };
+		F8874D5EAAC290DA4344EB3511D4B21D /* SubscribeOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubscribeOperation.swift; path = "Source/Classes/Setup Operation/SubscribeOperation.swift"; sourceTree = "<group>"; };
+		F9E68139F15C882878C5BE69734F450A /* Tokens.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tokens.swift; path = Source/Model/Tokens.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		568DC1900273BDFD7EEDD7F7747BEA37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BAF779637280728B8E857D4EE90F8B4 /* CloudKit.framework in Frameworks */,
+				33E21D9A8C719F27EF06372271214201 /* CoreData.framework in Frameworks */,
+				78CCBFB422E34E8DCC74B4A617BEA85B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5D2B0C391E192B042E25113A02F87FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86547A92824ABCD4E5641D990AEC31AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70EA525B8919634ABB2ADB6E71EE2BC5 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CD1BAFD433BAB63C1888A371AD54C6E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF809F89815E4759D02CF8D7C4522C43 /* Pods-CloudKitExperiment */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		5FD297E9A717AC594580F49C6BC26D24 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				705A3F4220904D8FA13428B20BA27FC0 /* CloudCore */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		705A3F4220904D8FA13428B20BA27FC0 /* CloudCore */ = {
+			isa = PBXGroup;
+			children = (
+				60CC3B4C2535C5B41E5DA1BBA2FB4C7E /* AsynchronousOperation.swift */,
+				A281CB43C7C0B2D781663824211D23F7 /* CKRecord.swift */,
+				CAB043882FFC5A7F5588F5B461DE55A4 /* CKRecordID.swift */,
+				32CFFAE7E7F1F50F34DC6F8DB4BA832A /* CloudCore.swift */,
+				365EECC55FD972F354CDB84E9284EF8E /* CloudCoreConfig.swift */,
+				1B8DC42EE8AECE64976B78D4B48412E3 /* CloudCoreDelegate.swift */,
+				43D9C45F9CB0542112C8F3A3B5FB4F9D /* CloudCoreError.swift */,
+				D638E5183825FFF36EC862B1CC8D0DDC /* CloudKitAttribute.swift */,
+				567484D37B583E8E1EA3CB901847C384 /* CloudSaveOperationQueue.swift */,
+				993162BFE660538E00ABDCE85F989398 /* CoreDataAttribute.swift */,
+				1FB045B2DFFB23838B97A868DBFE179B /* CoreDataListener.swift */,
+				B53B93A593042AA8795242F21F803B83 /* CoreDataRelationship.swift */,
+				DECF0FBAD2BE661E9FEC011C7EC0236B /* CreateCloudCoreZoneOperation.swift */,
+				235C98DDDD7EBE7C39053ACDEF3DF522 /* DeleteFromCoreDataOperation.swift */,
+				52121A2DBD2F344F15E06598F02020A7 /* ErrorBlockProxy.swift */,
+				D287C6A5DCBF07EBD2EB5EF8479909AF /* FetchAndSaveOperation.swift */,
+				1190772E389FDBA65A36944CC4F63DF4 /* FetchPublicSubscriptionsOperation.swift */,
+				E9C3E2F06F6D077A2415234A3B069A65 /* FetchRecordZoneChangesOperation.swift */,
+				3F0DE6E5CF6EF1651BDB969F3411578F /* FetchResult.swift */,
+				1C39219AB9C70C9B9C07FCFB465C4FF6 /* Module.swift */,
+				26D00996830C9354798F0A3B65FEA042 /* NSEntityDescription.swift */,
+				54CB8CBBC7A83FE456ED38D4AA8D7FD1 /* NSManagedObject.swift */,
+				D8BCF02C18F614A81C63AD551333F74F /* NSManagedObjectModel.swift */,
+				9420B42DB617A2704E4FB901062A5206 /* ObjectToRecordConverter.swift */,
+				1EAC054AE4240FD6008756F3E52181BC /* ObjectToRecordOperation.swift */,
+				59729CB7A128332ABF8E95735D38155A /* PublicDatabaseSubscriptions.swift */,
+				82CB79555966F557EB0EA7419422CF32 /* PurgeLocalDatabaseOperation.swift */,
+				A284FC9622BB6EB123B7597E54F2E64B /* RecordIDWithDatabase.swift */,
+				6759ECF8EC567E36B77BF6758CF27515 /* RecordToCoreDataOperation.swift */,
+				E79670026C19382F2A1083B9F8D5DDC6 /* RecordWithDatabase.swift */,
+				46C188A185957C09D36E8B8D8D7181FD /* ServiceAttributeName.swift */,
+				B118982DE8483B25E6E5DE0B9C387F8B /* SetupOperation.swift */,
+				F8874D5EAAC290DA4344EB3511D4B21D /* SubscribeOperation.swift */,
+				F9E68139F15C882878C5BE69734F450A /* Tokens.swift */,
+				58751A45D57E86B96DC8A15CF8063F2E /* UploadAllLocalDataOperation.swift */,
+				A0B7BE7399C3F3B394DF75EAAA814AA6 /* Support Files */,
+			);
+			name = CloudCore;
+			path = CloudCore;
+			sourceTree = "<group>";
+		};
+		70EA525B8919634ABB2ADB6E71EE2BC5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B64ECF12EC5F7C7A9A6D844947553DEF /* CloudKit.framework */,
+				8571DC4789728ACC6833E3EC0C735EE2 /* CoreData.framework */,
+				7029AF17E26AFFDC676C543D8C2F9418 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				5FD297E9A717AC594580F49C6BC26D24 /* Pods */,
+				B82325CC950E1ECF953FCC6F34AB87A3 /* Products */,
+				3CD1BAFD433BAB63C1888A371AD54C6E /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A0B7BE7399C3F3B394DF75EAAA814AA6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2382E0223CDF8C3BD9A8CBF436690E99 /* CloudCore.modulemap */,
+				A4C5B76D1DAE55940DDFF7C54DECC0D9 /* CloudCore.xcconfig */,
+				91D3F0B18019366DEFFA34D0066EF1E3 /* CloudCore-dummy.m */,
+				CE6E4E88520C96E8B80671528414B19D /* CloudCore-prefix.pch */,
+				E516DDF0F08B57026E50EADA3B33BB72 /* CloudCore-umbrella.h */,
+				605D6060025E7A4E0B1CE555C8D8BB65 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CloudCore";
+			sourceTree = "<group>";
+		};
+		AF809F89815E4759D02CF8D7C4522C43 /* Pods-CloudKitExperiment */ = {
+			isa = PBXGroup;
+			children = (
+				A37AD9FD1701AC9002F4E3B5CF231606 /* Info.plist */,
+				398C61C8B55F3ACA33EFCA89F863CF13 /* Pods-CloudKitExperiment.modulemap */,
+				B066BCAA6AE64ECB8586F015E73FC513 /* Pods-CloudKitExperiment-acknowledgements.markdown */,
+				99BB47170774BFD2D1CFF5204866DD16 /* Pods-CloudKitExperiment-acknowledgements.plist */,
+				47827A0412FDD4ECA08A74D677C69F7F /* Pods-CloudKitExperiment-dummy.m */,
+				15F47B10C4414116EF3B3D6594F91450 /* Pods-CloudKitExperiment-frameworks.sh */,
+				396C96E8D7B72CEB38FB3EC48D7E4079 /* Pods-CloudKitExperiment-resources.sh */,
+				6DF40CC1E865437744011BBCE80F489F /* Pods-CloudKitExperiment-umbrella.h */,
+				AF85EA5EA4241B59C7E2337EC3A2E8B3 /* Pods-CloudKitExperiment.debug.xcconfig */,
+				2E81B2AA5EA3A47A53FC22CECBDB666A /* Pods-CloudKitExperiment.release.xcconfig */,
+			);
+			name = "Pods-CloudKitExperiment";
+			path = "Target Support Files/Pods-CloudKitExperiment";
+			sourceTree = "<group>";
+		};
+		B82325CC950E1ECF953FCC6F34AB87A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8E938C141EA7A68CE970568764BE83B /* CloudCore.framework */,
+				5C12D182DC587CA5B2950D9C0505D7D5 /* Pods_CloudKitExperiment.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		16E587FDA0B0729F4B258F7540E13505 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0288555077766D9726BEF85C3F1EEF57 /* Pods-CloudKitExperiment-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41D878F73AF9E2B1B52910759D213B08 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F605342A1958D2939AE798C3CAEDADC /* CloudCore-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2CD51823481EB71310C144E7D7391E3C /* CloudCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3CA592140AA5056F62E6894F1862437 /* Build configuration list for PBXNativeTarget "CloudCore" */;
+			buildPhases = (
+				831D70BE2E094F56378C41C1E3D9E6AF /* Sources */,
+				568DC1900273BDFD7EEDD7F7747BEA37 /* Frameworks */,
+				41D878F73AF9E2B1B52910759D213B08 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CloudCore;
+			productName = CloudCore;
+			productReference = C8E938C141EA7A68CE970568764BE83B /* CloudCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F77C79BE3EDC4879E7FD2BD0690204FB /* Pods-CloudKitExperiment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04EDD02D8C80E940619B27EAC3F73A8C /* Build configuration list for PBXNativeTarget "Pods-CloudKitExperiment" */;
+			buildPhases = (
+				E089E85E68BD00803277307A272726A3 /* Sources */,
+				F5D2B0C391E192B042E25113A02F87FB /* Frameworks */,
+				16E587FDA0B0729F4B258F7540E13505 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDC3F8B465141F66159C1029BD01504F /* PBXTargetDependency */,
+			);
+			name = "Pods-CloudKitExperiment";
+			productName = "Pods-CloudKitExperiment";
+			productReference = 5C12D182DC587CA5B2950D9C0505D7D5 /* Pods_CloudKitExperiment.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = B82325CC950E1ECF953FCC6F34AB87A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2CD51823481EB71310C144E7D7391E3C /* CloudCore */,
+				F77C79BE3EDC4879E7FD2BD0690204FB /* Pods-CloudKitExperiment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		831D70BE2E094F56378C41C1E3D9E6AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFCFE2D2ECC7AAC0BA2837D071E7D5C0 /* AsynchronousOperation.swift in Sources */,
+				0CD190344244A57AB94891DF724293FF /* CKRecord.swift in Sources */,
+				D9307CE6F303F64197BE8E55797D0E36 /* CKRecordID.swift in Sources */,
+				CB63E5CC690E7103A88649BBB6345E2B /* CloudCore-dummy.m in Sources */,
+				5B2C8FF234963D879DADFCBAD46E460F /* CloudCore.swift in Sources */,
+				F162126B42E3F4249195821B4C3F4EA7 /* CloudCoreConfig.swift in Sources */,
+				9712289C8DC5F689B83AEEAA59A307C8 /* CloudCoreDelegate.swift in Sources */,
+				281A4D2BB0A222B0BEB4698BF1B0DE39 /* CloudCoreError.swift in Sources */,
+				C4F8870B06C004B5C0399F5802F1B96C /* CloudKitAttribute.swift in Sources */,
+				414298444C62A9EFC82D677ABEBD32E0 /* CloudSaveOperationQueue.swift in Sources */,
+				40778A849CE6AF59ECF0E75840867D84 /* CoreDataAttribute.swift in Sources */,
+				3C77C4AAE3BFD31F6A012AF5AE8266C0 /* CoreDataListener.swift in Sources */,
+				A2B854D2E7B51C20DA1F7BEAF9D3F40B /* CoreDataRelationship.swift in Sources */,
+				13F0C120DFE30038DC63328511823B43 /* CreateCloudCoreZoneOperation.swift in Sources */,
+				1C92EFC8CB705C1583C38B4256B6225C /* DeleteFromCoreDataOperation.swift in Sources */,
+				7BB726F7CFC0CFBF4B658505C27FD91B /* ErrorBlockProxy.swift in Sources */,
+				B16182F6BD63E16692F02138DED2E84C /* FetchAndSaveOperation.swift in Sources */,
+				67001F0E3389CCE41F3DA457CF24857B /* FetchPublicSubscriptionsOperation.swift in Sources */,
+				E23ECFFBF2B533506516E3BDE609EAC4 /* FetchRecordZoneChangesOperation.swift in Sources */,
+				921DD5F595C7763096D146CE1437E0F7 /* FetchResult.swift in Sources */,
+				CA6ED555EDAB76DAD0EE2EE819FBB266 /* Module.swift in Sources */,
+				7CB87AE653FAC15C9AAA6C297028EDC2 /* NSEntityDescription.swift in Sources */,
+				C5BA2B6384E9E6DE8F47B8CD99805A57 /* NSManagedObject.swift in Sources */,
+				44E31C969CE792709A8114A414E00A68 /* NSManagedObjectModel.swift in Sources */,
+				47A865D281488E90AB61C908C76C404E /* ObjectToRecordConverter.swift in Sources */,
+				B59AB4A55111FAF83D3EAF02A0DDFE11 /* ObjectToRecordOperation.swift in Sources */,
+				E30F77C3A84B40F0C1A53F4EA10B33F0 /* PublicDatabaseSubscriptions.swift in Sources */,
+				AC9C349E414D5E1B74D071E60A970096 /* PurgeLocalDatabaseOperation.swift in Sources */,
+				9BEA9A8DD660A08457518E56995718E3 /* RecordIDWithDatabase.swift in Sources */,
+				044EE149B510F7ADEA4677D7488A7140 /* RecordToCoreDataOperation.swift in Sources */,
+				EB58B475AEA12D212109BEA2331E6177 /* RecordWithDatabase.swift in Sources */,
+				ADE10B52D7D9FE7B79BECDAFED0C9F47 /* ServiceAttributeName.swift in Sources */,
+				9654985243DFC76AAB6EA1F913534328 /* SetupOperation.swift in Sources */,
+				AA2E10F9D524F2EB6606EA0F7EC3BA6C /* SubscribeOperation.swift in Sources */,
+				B9AF331613EFB8B2B8E5793896CA470A /* Tokens.swift in Sources */,
+				6513E73D2312A70B38EA2A703DCA0DB5 /* UploadAllLocalDataOperation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E089E85E68BD00803277307A272726A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD1F0B5749FAA0D1BDC66F6982515108 /* Pods-CloudKitExperiment-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDC3F8B465141F66159C1029BD01504F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CloudCore;
+			target = 2CD51823481EB71310C144E7D7391E3C /* CloudCore */;
+			targetProxy = 56ABCFEC350BC2CD61E8C8C89263AD69 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5DC0083F57E9AB706B46C5B5D73B38D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		66C30280E31420D7CA34E6919DCB92B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4C5B76D1DAE55940DDFF7C54DECC0D9 /* CloudCore.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CloudCore/CloudCore-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CloudCore/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CloudCore/CloudCore.modulemap";
+				PRODUCT_MODULE_NAME = CloudCore;
+				PRODUCT_NAME = CloudCore;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		67E2115215FC554207D29F5FB58C655D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4C5B76D1DAE55940DDFF7C54DECC0D9 /* CloudCore.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CloudCore/CloudCore-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CloudCore/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CloudCore/CloudCore.modulemap";
+				PRODUCT_MODULE_NAME = CloudCore;
+				PRODUCT_NAME = CloudCore;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AEEA80476F98EB645C4DD53EB2BB6D88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		CAEAE787176BF60F64961159F79F698E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF85EA5EA4241B59C7E2337EC3A2E8B3 /* Pods-CloudKitExperiment.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CloudKitExperiment/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CloudKitExperiment/Pods-CloudKitExperiment.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E17218AB86DE4A5826CE08A5F9EBC4A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E81B2AA5EA3A47A53FC22CECBDB666A /* Pods-CloudKitExperiment.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CloudKitExperiment/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CloudKitExperiment/Pods-CloudKitExperiment.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04EDD02D8C80E940619B27EAC3F73A8C /* Build configuration list for PBXNativeTarget "Pods-CloudKitExperiment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAEAE787176BF60F64961159F79F698E /* Debug */,
+				E17218AB86DE4A5826CE08A5F9EBC4A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DC0083F57E9AB706B46C5B5D73B38D8 /* Debug */,
+				AEEA80476F98EB645C4DD53EB2BB6D88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3CA592140AA5056F62E6894F1862437 /* Build configuration list for PBXNativeTarget "CloudCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C30280E31420D7CA34E6919DCB92B6 /* Debug */,
+				67E2115215FC554207D29F5FB58C655D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
