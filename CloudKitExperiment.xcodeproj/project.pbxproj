@@ -16,6 +16,8 @@
 		9D09983820A791E700CB3AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D09983720A791E700CB3AAE /* Assets.xcassets */; };
 		9D09983B20A791E700CB3AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D09983920A791E700CB3AAE /* LaunchScreen.storyboard */; };
 		9D09984520A791F500CB3AAE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D09984420A791F500CB3AAE /* CloudKit.framework */; };
+		9D5559F820A8B9B500887131 /* +List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5559F720A8B9B500887131 /* +List.swift */; };
+		9D5559FB20A8B9C700887131 /* +Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5559FA20A8B9C700887131 /* +Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		9D09983C20A791E700CB3AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D09984220A791F100CB3AAE /* CloudKitExperiment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CloudKitExperiment.entitlements; sourceTree = "<group>"; };
 		9D09984420A791F500CB3AAE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		9D5559F720A8B9B500887131 /* +List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+List.swift"; sourceTree = "<group>"; };
+		9D5559FA20A8B9C700887131 /* +Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Item.swift"; sourceTree = "<group>"; };
 		D50DABAC53BCF6413E9AC2C5 /* Pods_CloudKitExperiment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudKitExperiment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB43D3248F68618B593083F9 /* Pods-CloudKitExperiment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudKitExperiment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudKitExperiment/Pods-CloudKitExperiment.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +82,7 @@
 				9D09983920A791E700CB3AAE /* LaunchScreen.storyboard */,
 				9D09983C20A791E700CB3AAE /* Info.plist */,
 				9D09982D20A791E700CB3AAE /* CloudKitExperiment.xcdatamodeld */,
+				9D5559F920A8B9BC00887131 /* Models */,
 			);
 			path = CloudKitExperiment;
 			sourceTree = "<group>";
@@ -89,6 +94,15 @@
 				D50DABAC53BCF6413E9AC2C5 /* Pods_CloudKitExperiment.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D5559F920A8B9BC00887131 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9D5559F720A8B9B500887131 /* +List.swift */,
+				9D5559FA20A8B9C700887131 /* +Item.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A106ACB78E248DB9D05EED53 /* Pods */ = {
@@ -135,6 +149,9 @@
 					9D09982720A791E700CB3AAE = {
 						CreatedOnToolsVersion = 9.4;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -222,7 +239,9 @@
 			files = (
 				9D09982C20A791E700CB3AAE /* AppDelegate.swift in Sources */,
 				9D09982F20A791E700CB3AAE /* CloudKitExperiment.xcdatamodeld in Sources */,
+				9D5559FB20A8B9C700887131 /* +Item.swift in Sources */,
 				9D09983120A791E700CB3AAE /* MasterViewController.swift in Sources */,
+				9D5559F820A8B9B500887131 /* +List.swift in Sources */,
 				9D09983320A791E700CB3AAE /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

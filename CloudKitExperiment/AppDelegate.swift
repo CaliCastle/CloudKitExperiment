@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import CloudKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -25,7 +27,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let controller = masterNavigationController.topViewController as! MasterViewController
         controller.managedObjectContext = self.persistentContainer.viewContext
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: UNAuthorizationOptions.alert) { (success, error) in
+            
+        }
+        
+        application.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let cloudKitNotification = CKNotification(fromRemoteNotificationDictionary: userInfo)
+
+        switch cloudKitNotification.notificationType {
+        case .query:
+            guard let notification = cloudKitNotification as? CKQueryNotification else { return }
+            let recordID = notification.recordID
+            
+            if let key = notification.alertActionLocalizationKey {
+                switch key {
+                case "list.modify":
+                    NotificationCenter.default.post(name: .init("ListModify"), object: recordID)
+                case "list.delete":
+                    NotificationCenter.default.post(name: .init("ListDelete"), object: recordID)
+                case "item.modify":
+                    NotificationCenter.default.post(name: .init("ItemModify"), object: recordID)
+                case "item.delete":
+                    NotificationCenter.default.post(name: .init("ItemDelete"), object: recordID)
+                default:
+                    return
+                }
+            }
+        case .database:
+            print("Database changed")
+        default:
+            return
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

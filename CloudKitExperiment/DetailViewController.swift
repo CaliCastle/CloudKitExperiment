@@ -17,10 +17,38 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let _ = list else { return }
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForItem(_:)))
         navigationItem.rightBarButtonItem = addButton
         
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        NotificationCenter.default.addObserver(forName: .init(rawValue: "ItemModify"), object: nil, queue: nil) { notification in
+            if let recordID = notification.object as? CKRecordID {
+                self.fetchQuery(recordID: recordID)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .init(rawValue: "ItemDelete"), object: nil, queue: nil) { notification in
+            if let recordID = notification.object as? CKRecordID {
+                self.deleteRecord(recordID: recordID)
+            }
+        }
+        
+        subscribeForChanges()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        
+        guard let _ = list else { return }
+        
+        cloudDatabase.delete(withSubscriptionID: subscription.subscriptionID) { (id, error) in
+            self.cloudDatabase.delete(withSubscriptionID: self.deleteSubscription.subscriptionID, completionHandler: { (_, _) in
+                
+            })
+        }
     }
 
     var list: List? {
@@ -28,7 +56,42 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             title = "List [\(list?.title ?? "")]"
         }
     }
+    
+    fileprivate lazy var subscription: CKQuerySubscription = {
+        let predicate = NSPredicate(format: "list = %@", CKRecordID(recordName: list!.recordName!))
+        return CKQuerySubscription(recordType: String(describing: Item.self), predicate: predicate, options: [.firesOnRecordCreation, .firesOnRecordUpdate])
+    }()
+    
+    fileprivate lazy var deleteSubscription: CKQuerySubscription = {
+       let predicate = NSPredicate(format: "list = %@", CKRecordID(recordName: list!.recordName!))
+        return CKQuerySubscription(recordType: String(describing: Item.self), predicate: predicate, options: .firesOnRecordDeletion)
+    }()
+    
+    fileprivate func subscribeForChanges() {
+        let notificationInfo = CKNotificationInfo()
+        notificationInfo.alertActionLocalizationKey = "item.modify"
+        notificationInfo.shouldBadge = true
+        
+        let deleteNotificationInfo = CKNotificationInfo()
+        deleteNotificationInfo.alertActionLocalizationKey = "item.delete"
+        deleteNotificationInfo.shouldBadge = true
+        
+        subscription.notificationInfo = notificationInfo
+        deleteSubscription.notificationInfo = deleteNotificationInfo
 
+        self.cloudDatabase.save(self.subscription) { (sub, error) in
+            if error == nil {
+                print("Subscription saved! \(sub?.notificationInfo?.alertActionLocalizationKey ?? "")")
+            }
+            
+            self.cloudDatabase.save(self.deleteSubscription) { (sub, error) in
+                if error == nil {
+                    print("Subscription saved! \(sub?.notificationInfo?.alertActionLocalizationKey ?? "")")
+                }
+            }
+        }
+    }
+    
     @objc
     private func promptForItem(_ sender: Any) {
         let actionController = UIAlertController(title: "Enter name of the item", message: nil, preferredStyle: .alert)
@@ -71,6 +134,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         newItem.finished = false
         
         saveContext(context)
+        
+        syncToCloud(item: newItem, type: .insert)
     }
     
     private func updateItem(name: String, for item: Item) {
@@ -79,12 +144,74 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         item.name = name
         
         saveContext(context)
+        
+        syncToCloud(item: item, type: .update)
     }
     
-    private func saveContext(_ context: NSManagedObjectContext) {
+    fileprivate func fetchRecords() {
+        guard let list = list else { return }
+        let predicate = NSPredicate(format: "list = %@", CKRecordID(recordName: list.recordName!))
+
+        cloudDatabase.perform(CKQuery(recordType: String(describing: Item.self), predicate: predicate), inZoneWith: nil) { (records, error) in
+            if let error = error {
+                print("Error when querying items: \(error.localizedDescription)")
+            }
+            
+            if let records = records {
+                records.forEach({
+                    self.createOrUpdate($0)
+                    self.saveContext()
+                })
+            }
+        }
+    }
+    
+    fileprivate func fetchQuery(recordID: CKRecordID) {
+        cloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            guard error == nil else { print("Error when fetching query: \(error.debugDescription)"); return }
+            
+            if let record = record {
+                self.createOrUpdate(record)
+                self.saveContext(self.fetchedResultsController.managedObjectContext)
+            }
+        }
+    }
+    
+    fileprivate func deleteRecord(recordID: CKRecordID) {
+        guard let item = fetchedResultsController.fetchedObjects?.first(where: { $0.recordName == recordID.recordName }) else { return }
+        
+        let context = fetchedResultsController.managedObjectContext
+        context.delete(item)
+        
+        saveContext(context)
+        
+        syncToCloud(item: item, type: .delete)
+    }
+    
+    fileprivate func createOrUpdate(_ record: CKRecord) {
+        let id = record.recordID.recordName
+        let context = fetchedResultsController.managedObjectContext
+        
+        guard let item = fetchedResultsController.fetchedObjects?.first(where: { $0.recordName == id }) else {
+            // Create
+            let item = Item(context: context, record: record)
+            item.list = self.list
+            return
+        }
+        
+        // Update
+        item.updateFrom(record: record)
+        item.list = list
+    }
+    
+    private func saveContext(_ context: NSManagedObjectContext? = nil) {
         // Save the context.
         do {
-            try context.save()
+            if let context = context {
+                try context.save()
+            } else {
+                try fetchedResultsController.managedObjectContext.save()
+            }
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -136,14 +263,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             let context = fetchedResultsController.managedObjectContext
             context.delete(fetchedResultsController.object(at: indexPath))
             
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+            saveContext(context)
         }
     }
     
@@ -172,6 +292,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         do {
             try _fetchedResultsController!.performFetch()
+            
+            fetchRecords()
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -200,9 +322,6 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        syncToCloud(item: anObject as! Item, type: type)
-        
         switch type {
         case .insert:
             tableView.insertRows(at: [newIndexPath!], with: .fade)
@@ -233,7 +352,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             
             // Add list 'belongs to' relationship
             let listID = CKRecordID(recordName: list!.recordName!)
-            let reference = CKReference(recordID: listID, action: .none)
+            let reference = CKReference(recordID: listID, action: .deleteSelf)
             
             record.setValue(reference, forKeyPath: #keyPath(Item.list))
             
@@ -258,7 +377,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                 
                 // Add list relationship
                 let listID = CKRecordID(recordName: list!.recordName!)
-                let reference = CKReference(recordID: listID, action: .none)
+                let reference = CKReference(recordID: listID, action: .deleteSelf)
                 
                 newRecord.setValue(reference, forKeyPath: #keyPath(Item.list))
                 
