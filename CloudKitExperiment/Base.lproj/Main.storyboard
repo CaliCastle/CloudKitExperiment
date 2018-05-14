@@ -56,7 +56,11 @@
                             <outlet property="delegate" destination="ogK-eC-Woo" id="5Fl-ho-kUV"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="UwM-nd-VW5"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="abA-Cv-Sbe"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ra5-mZ-ouO">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>

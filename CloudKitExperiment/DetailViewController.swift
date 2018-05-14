@@ -19,10 +19,14 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         guard let _ = list else { return }
         
+        toolbarItems = [editButtonItem]
+        
+        navigationController?.setToolbarHidden(false, animated: false)
+        
+        tableView.allowsSelectionDuringEditing = true
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForItem(_:)))
         navigationItem.rightBarButtonItem = addButton
-        
-        navigationItem.leftBarButtonItem = editButtonItem
         
         NotificationCenter.default.addObserver(forName: .init(rawValue: "ItemModify"), object: nil, queue: nil) { notification in
             if let recordID = notification.object as? CKRecordID {
@@ -36,7 +40,17 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }
         
+        NotificationCenter.default.addObserver(forName: .init(rawValue: "Foreground"), object: nil, queue: nil) { notification in
+            self.fetchRecords()
+        }
+        
         subscribeForChanges()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        fetchRecords()
     }
     
     deinit {
@@ -109,15 +123,17 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     fileprivate func promptUpdateItem(at indexPath: IndexPath) {
+        let item = fetchedResultsController.object(at: indexPath)
         let actionController = UIAlertController(title: "Change name of the item", message: nil, preferredStyle: .alert)
         actionController.addTextField {
+            $0.text = item.name
             $0.placeholder = "Name"
             $0.returnKeyType = .done
             $0.autocapitalizationType = .sentences
         }
         
-        actionController.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
-            self.updateItem(name: actionController.textFields!.first!.text!, for: self.fetchedResultsController.object(at: indexPath))
+        actionController.addAction(UIAlertAction(title: "Update", style: .destructive, handler: { _ in
+            self.updateItem(name: actionController.textFields!.first!.text!, for: item)
         }))
         actionController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -158,10 +174,25 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             }
             
             if let records = records {
-                records.forEach({
-                    self.createOrUpdate($0)
-                    self.saveContext()
-                })
+                self.syncRecords(records)
+            }
+        }
+    }
+    
+    fileprivate func syncRecords(_ records: [CKRecord]) {
+        let context = fetchedResultsController.managedObjectContext
+        var allList = [Item]()
+
+        records.forEach({
+            allList.append(self.createOrUpdate($0))
+            saveContext(context)
+        })
+        
+        DispatchQueue.main.async {
+            if let fetchedList = self.fetchedResultsController.fetchedObjects {
+                Set(allList).symmetricDifference(Set(fetchedList)).forEach {
+                    context.delete($0)
+                }
             }
         }
     }
@@ -171,7 +202,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             guard error == nil else { print("Error when fetching query: \(error.debugDescription)"); return }
             
             if let record = record {
-                self.createOrUpdate(record)
+                let _ = self.createOrUpdate(record)
                 self.saveContext(self.fetchedResultsController.managedObjectContext)
             }
         }
@@ -188,7 +219,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         syncToCloud(item: item, type: .delete)
     }
     
-    fileprivate func createOrUpdate(_ record: CKRecord) {
+    fileprivate func createOrUpdate(_ record: CKRecord) -> Item {
         let id = record.recordID.recordName
         let context = fetchedResultsController.managedObjectContext
         
@@ -196,12 +227,15 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             // Create
             let item = Item(context: context, record: record)
             item.list = self.list
-            return
+            
+            return item
         }
         
         // Update
         item.updateFrom(record: record)
         item.list = list
+    
+        return item
     }
     
     private func saveContext(_ context: NSManagedObjectContext? = nil) {
@@ -243,14 +277,15 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         if tableView.isEditing {
             promptUpdateItem(at: indexPath)
         } else {
             let item = fetchedResultsController.object(at: indexPath)
             item.finished = !item.finished
+            syncToCloud(item: item, type: .update)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -261,8 +296,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let context = fetchedResultsController.managedObjectContext
-            context.delete(fetchedResultsController.object(at: indexPath))
+            let item = fetchedResultsController.object(at: indexPath)
             
+            syncToCloud(item: item, type: .delete)
+            
+            context.delete(item)
             saveContext(context)
         }
     }

@@ -46,7 +46,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }
         
+        NotificationCenter.default.addObserver(forName: .init(rawValue: "Foreground"), object: nil, queue: nil) { notification in
+            self.fetchRecords()
+        }
+        
         subscribeForChanges()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        fetchRecords()
     }
 
     deinit {
@@ -95,43 +105,56 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             guard error == nil else { print("Error when fetching query: \(error.debugDescription)"); return }
             
             if let record = record {
-                self.createOrUpdate(record)
+                let _ = self.createOrUpdate(record)
                 self.saveContext(self.fetchedResultsController.managedObjectContext)
             }
         }
     }
     
     fileprivate func fetchRecords() {
-        let query = CKQuery(recordType: "List", predicate: NSPredicate(value: true))
+        let query = CKQuery(recordType: String(describing: List.self), predicate: NSPredicate(value: true))
         cloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 print("Error when querying list: \(error.localizedDescription)")
             } else {
                 if let records = records {
-                    let context = self.fetchedResultsController.managedObjectContext
-                    
-                    records.forEach({
-                        self.createOrUpdate($0)
-                    })
-                    
-                    self.saveContext(context)
+                    self.syncRecords(records)
                 }
             }
         }
     }
     
-    fileprivate func createOrUpdate(_ record: CKRecord) {
+    fileprivate func syncRecords(_ records: [CKRecord]) {
+        let context = fetchedResultsController.managedObjectContext
+        var allList = [List]()
+        
+        records.forEach({
+            allList.append(self.createOrUpdate($0))
+            saveContext(context)
+        })
+        
+        DispatchQueue.main.async {
+            if let fetchedList = self.fetchedResultsController.fetchedObjects {
+                Set(allList).symmetricDifference(Set(fetchedList)).forEach {
+                    context.delete($0)
+                }
+            }
+        }
+    }
+    
+    fileprivate func createOrUpdate(_ record: CKRecord) -> List {
         let id = record.recordID.recordName
         let context = self.fetchedResultsController.managedObjectContext
         
         guard let list = fetchedResultsController.fetchedObjects?.first(where: { $0.recordName == id }) else {
             // Create
-            let _ = List(context: context, record: record)
-            return
+            return List(context: context, record: record)
         }
         
         // Update
         list.updateFrom(record: record)
+        
+        return list
     }
     
     fileprivate func deleteRecord(recordID: CKRecordID) {
@@ -250,19 +273,25 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         } else {
             performSegue(withIdentifier: "showDetail", sender: nil)
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56
+    }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let context = fetchedResultsController.managedObjectContext
-            context.delete(fetchedResultsController.object(at: indexPath))
+            let list = fetchedResultsController.object(at: indexPath)
+            
+            syncToCloud(list: list, type: .delete)
+            
+            context.delete(list)
 
             saveContext(context)
         }
@@ -391,3 +420,39 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
 }
 
+// MARK: - Keyboard Shortcuts
+
+extension MasterViewController {
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        let commands = [
+            UIKeyCommand(input: "N", modifierFlags: .command, action: #selector(commandPressed(_:)), discoverabilityTitle: "Create a new list"),
+            UIKeyCommand(input: "E", modifierFlags: .command, action: #selector(commandPressed(_:)), discoverabilityTitle: "Edit a list")
+        ]
+        
+        return commands
+    }
+    
+    @objc
+    fileprivate func commandPressed(_ command: UIKeyCommand) {
+        if let input = command.input {
+            switch input {
+            case "E":
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    promptForUpdate(at: indexPath)
+                }
+                
+                return
+            case "N":
+                promptForItem(input)
+            default:
+                return
+            }
+        }
+    }
+    
+}
