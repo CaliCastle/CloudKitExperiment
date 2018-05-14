@@ -84,11 +84,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     fileprivate func subscribeForChanges() {
         let notificationInfo = CKNotificationInfo()
         notificationInfo.alertActionLocalizationKey = "item.modify"
-        notificationInfo.shouldBadge = true
+        notificationInfo.shouldSendContentAvailable = true
         
         let deleteNotificationInfo = CKNotificationInfo()
         deleteNotificationInfo.alertActionLocalizationKey = "item.delete"
-        deleteNotificationInfo.shouldBadge = true
+        deleteNotificationInfo.shouldSendContentAvailable = true
         
         subscription.notificationInfo = notificationInfo
         deleteSubscription.notificationInfo = deleteNotificationInfo

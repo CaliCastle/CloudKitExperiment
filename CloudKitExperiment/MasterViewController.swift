@@ -76,11 +76,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let notificationInfo = CKNotificationInfo()
         notificationInfo.alertActionLocalizationKey = "list.modify"
-        notificationInfo.shouldBadge = true
+        notificationInfo.shouldSendContentAvailable = true
         
         let deleteNotificationInfo = CKNotificationInfo()
         deleteNotificationInfo.alertActionLocalizationKey = "list.delete"
-        deleteNotificationInfo.shouldBadge = true
+        deleteNotificationInfo.shouldSendContentAvailable = true
         
         subscription.notificationInfo = notificationInfo
         deleteSubscription.notificationInfo = deleteNotificationInfo
